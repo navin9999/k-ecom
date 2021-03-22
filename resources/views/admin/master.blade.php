@@ -43,7 +43,8 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="{{ asset('admin_assets/images/icon/logo.png')}}" alt="CoolAdmin" />
+                           <!--  <img src="{{ asset('admin_assets/images/icon/logo.png')}}" alt="CoolAdmin" /> -->
+                            <h4> {{Config::get('constants.site_name')}}</h4>
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -56,6 +57,26 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
+                        <li>
+                            <a href="admin/dashboard">
+                                <i  class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-chart-bar"></i>Category</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="admin/category_list">Category List</a>
+                                </li>
+                                <li>
+                                    <a href="admin/add_category">Category Add</a>
+                                </li>
+                              
+                            </ul>
+                        </li>
+
+
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -158,12 +179,34 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="{{ asset('admin_assets/images/icon/logo.png')}}" alt="Cool Admin" />
+                    <h4> {{Config::get('constants.site_name')}}</h4>
+                    <!-- <img src="{{ asset('admin_assets/images/icon/logo.png')}}" alt="Cool Admin" /> -->
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
+
+                         <li>
+                            <a href="admin/dashboard">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+
+                         <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-chart-bar"></i>Category</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="admin/category_list">Category List</a>
+                                </li>
+                                <li>
+                                    <a href="admin/add_category">Add Category</a>
+                                </li>
+                               
+                            </ul>
+                        </li>
+
+
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
@@ -394,7 +437,7 @@
                                             <img src="{{ asset('admin_assets/images/icon/avatar-01.jpg')}}" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#">Welcome Admin</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -405,7 +448,7 @@
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#">Welcome Admin</a>
                                                     </h5>
                                                     <span class="email">johndoe@example.com</span>
                                                 </div>
@@ -415,17 +458,10 @@
                                                     <a href="#">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                                </div>
+                                               
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="{{url('admin/logout')}}">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -441,7 +477,7 @@
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                   
+                    @yield('content')
                 </div>
             </div>
             <!-- END MAIN CONTENT-->

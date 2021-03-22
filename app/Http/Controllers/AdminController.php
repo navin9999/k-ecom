@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -12,9 +13,17 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request  $request)
     {
-        //
+         if($request->session()->has('ADMIN_LOGIN')) {
+           return redirect('admin/dashboard');
+        }
+
+        else{
+            $request->session()->flash('error', 'Access Denined');
+            return view('admin.login');
+        }
+
         return view('admin.login');
     }
      public function dashboard()
@@ -31,19 +40,47 @@ class AdminController extends Controller
         $email= $req->post('email');
         $password= $req->post('password');
         // return view('Admin.login');
-        $result=Admin::where(['email'=>$email, 'password'=>$password])->get();
+        // $result=Admin::where(['email'=>$email, 'password'=>$password])->get();
 
-        if(isset($result['0']->id)) {
+        $result=Admin::where(['email'=>$email])->first();
+        
+        if($result){
+
+            if(Hash::check($req->post('password'),$result->password)) {
+
             $req->session()->put('ADMIN_LOGIN', true);
-            $req->session()->put('ADMIN_ID', true);
+            
+            $req->session()->put('ADMIN_ID', $result->id);
             return redirect('admin/dashboard');
+            }
 
+            else {
+                 $req->session()->flash('error', 'please enter valid password');
+                 return redirect('admin');
+            }
+
+
+           
         }
 
-        else{
+        else {
+            
             $req->session()->flash('error', 'please enter valid login details');
             return redirect('admin');
+
         }
+
+        // if(isset($result['0']->id)) {
+        //     $req->session()->put('ADMIN_LOGIN', true);
+        //     $req->session()->put('ADMIN_ID', true);
+        //     return redirect('admin/dashboard');
+
+        // }
+
+        // else{
+        //     $req->session()->flash('error', 'please enter valid login details');
+        //     return redirect('admin');
+        // }
 
        
     }

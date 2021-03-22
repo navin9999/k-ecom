@@ -43,13 +43,14 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="admin_assets/#">
-                                <img src="admin_assets/images/icon/logo.png" alt="CoolAdmin">
+                                <!-- <img src="admin_assets/images/icon/logo.png" alt="CoolAdmin"> -->
+                                <h4> {{Config::get('constant.site_name')}}</h4>
                             </a>
                         </div>
                         <div class="login-form">
                             <form action="{{route('admin.auth')}}" method="post">
                                 @csrf
-                                <div class="alert alert-danger" role="alert">
+                                <div class="text-danger" >
                                {{session('error')}} 
                                             
                                 </div>
