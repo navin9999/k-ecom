@@ -22,6 +22,14 @@ class CategoryController extends Controller
         {
             //
              return view('admin.manage_category');
+        } 
+
+        public function manage_category(Request $request)
+        {
+            //
+            $k= $request->post();
+
+            echo $k;
         }
 
     /**

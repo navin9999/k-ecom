@@ -187,27 +187,29 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
 
-                         <li>
-                            <a href="admin/dashboard">
+                         <li class="{!!Route::getFacadeRoot()->current()->uri()=='admin/dashboard'?'active':''!!}">
+                            <a href="{{url('admin/dashboard')}}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
 
-                         <li class="active has-sub">
+                         <li class=" has-sub {!!Route::getFacadeRoot()->current()->uri()=='admin/category_list'?'active':''!!} 
+                                 {!!Route::getFacadeRoot()->current()->uri()=='admin/category/manage_category'?'active':''!!} 
+                          ">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-chart-bar"></i>Category</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="admin/category_list">Category List</a>
+                                    <a href="{{url('admin/category_list')}}">Category List</a>
                                 </li>
                                 <li>
-                                    <a href="admin/add_category">Add Category</a>
+                                    <a href="{{url('admin/category/manage_category')}}">Add Category</a>
                                 </li>
                                
                             </ul>
                         </li>
 
 
-                        <li class="active has-sub">
+                        <li class=" has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">

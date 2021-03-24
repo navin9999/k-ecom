@@ -1,4 +1,4 @@
 <?php
 return [
-    'site_name'=>'K ECOM'
+    'site_name'=>'ANB SHOPPING'
 ];
