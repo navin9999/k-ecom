@@ -67,7 +67,7 @@
                                 <i class="fas fa-chart-bar"></i>Category</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="admin/category_list">Category List</a>
+                                    <a href="{{url('admin/category_list')}}">Category List</a>
                                 </li>
                                 <li>
                                     <a href="admin/add_category">Category Add</a>
