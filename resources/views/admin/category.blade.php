@@ -2,11 +2,20 @@
 
 	@section('content')
 
-	
+ 
+@if(session()->has('message')) 
+		<div class="sufee-alert alert with-close alert-primary alert-dismissible fade show">
+			<span class="badge badge-pill badge-success">Successfully</span>
+				{{session('message')}} 
+			    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			        <span aria-hidden="true">×</span>
+				</button>
+		 </div>
+		 @endif
 	<div class="row">
 		<div class="col-md-12">
 			<div class="overview-wrap">
-				<h2 class="title-1">overview</h2>
+				<h2 class="title-1">Category List</h2>
 				<a href="{{url('admin/category/manage_category')}}">
 					<button class="au-btn au-btn-icon au-btn--blue">
 						<i class="zmdi zmdi-plus"></i>Add Category</button>
@@ -28,24 +37,29 @@
 							</tr>
 						</thead>
 						<tbody>
-							{{--  @foreach($data as $list)
+						  @foreach($cat_list as $key =>  $list)
 								<tr>
-									<td>{{$list->id}}</td>
+									<td>{{++$key}}</td>
 									<td>{{$list->category_name}}</td>
 									<td>{{$list->category_slug}}</td>
 									<td>
-										<a href="{{url('admin/category/manage_category/')}}/{{$list->id}}"><button type="button" class="btn btn-success">Edit</button></a>
+										<a 
+										href="{{url('admin/category/manage_category/')}}/{{$list->id}}">
+                                        <button type="button" class="btn btn-warning">Edit</button> 
+										</a>
 
-										@if($list->status==1)
+										<!-- @if($list->status==1)
 										<a href="{{url('admin/category/status/0')}}/{{$list->id}}"><button type="button" class="btn btn-primary">Active</button></a>
 										@elseif($list->status==0)
 										<a href="{{url('admin/category/status/1')}}/{{$list->id}}"><button type="button" class="btn btn-warning">Deactive</button></a>
-										@endif
+										@endif -->
 
-										<a href="{{url('admin/category/delete/')}}/{{$list->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+										<a href="{{url('admin/category/delete/')}}/{{$list->id}}">
+											<button type="button" class="btn btn-danger">Delete</button>
+										</a>
 									</td>
 								</tr>
-								@endforeach --}}
+								@endforeach 
 							</tbody>
 						</table>
 					</div>

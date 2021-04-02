@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('category_name'); 
             $table->string('category_slug'); 
-            $table->integer('parent_id'); 
+            $table->integer('parent_category_id')->default('0');; 
             $table->timestamps();
         });
     }

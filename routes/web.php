@@ -28,9 +28,14 @@ Route::group(['middleware'=>'admin_auth'], function() {
 
 	Route::get('admin/dashboard',[AdminController::class, 'dashboard']);
 
-		Route::get('admin/category_list',[CategoryController::class, 'index']);
+	    Route::get('admin/category_list',[CategoryController::class, 'index']);
+
 		Route::get('admin/category/manage_category',[CategoryController::class,'manage_category']);
-		Route::post('admin/category/manage_category_process',[CategoryController::class,'manage_category_process'])->name('category.manage_category_process');
+		Route::get('admin/category/manage_category/{id}',[CategoryController::class,'manage_category']);
+
+		 Route::post('admin/category/manage_category_process',[CategoryController::class,'manage_category_process'])->name('category.manage_category_process');
+
+		 Route::get('admin/category/delete/{id}',[CategoryController::class, 'destroy']);
 
 
 

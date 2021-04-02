@@ -15,21 +15,70 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view('admin.category');
+        $data['cat_list']=Category::all();
+        // dd($data);
+        return view('admin.category',$data);
     }
 
-    public function manage_category()
+    public function manage_category(Request $request, $id='')
         {
-            //
-             return view('admin.manage_category');
-        } 
+            if($id>0){
 
-        public function manage_category(Request $request)
-        {
-            //
-            $k= $request->post();
+                $arr=Category::where(['id'=>$id])->get();
 
-            echo $k;
+                $result['category_name']=$arr['0']->category_name;
+                $result['category_slug']=$arr['0']->category_slug;
+                $result['id']=$arr['0']->id;
+
+
+            }
+            else {
+
+                $result['category_name']='';
+                $result['category_slug']='';
+                $result['id']=0;
+            }
+             // echo "<pre>";
+             // print_r($result['data'][0]->category_name);
+             // die();
+             return view('admin.manage_category',$result);
+            }
+        
+
+        public function manage_category_process(Request $request)
+        { 
+            // return $request->post();
+             
+            //  die();
+
+            $request->validate([
+                'category_name'=>'required',
+                'category_slug'=>'required|unique:categories,category_slug,'.$request->post('id'),
+
+
+            ]);
+
+            if($request->post('id')>0) {
+
+                $data= Category::find($request->post('id'));
+                $msg="Category Updated";
+               
+            }
+            else {
+
+                  $data=new Category();
+                   $msg="Category Inserted";
+
+            }
+            $data=new Category();
+            $data->category_name=$request->post('category_name');
+            $data->category_slug=$request->post('category_slug');
+            $data->parent_category_id=$request->post('parent_category_id');
+            $data->save();
+            $request->session()->flash('message',$msg);
+
+            return redirect('admin/category_list');
+            
         }
 
     /**
@@ -93,8 +142,15 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request, $id)
     {
         //
+        $data=Category::find($id);
+        // dd($data);
+        $data->delete();
+        $request->session()->flash('message','Category deleted');
+
+        return back();
+
     }
 }

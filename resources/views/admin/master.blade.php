@@ -70,7 +70,7 @@
                                     <a href="{{url('admin/category_list')}}">Category List</a>
                                 </li>
                                 <li>
-                                    <a href="admin/add_category">Category Add</a>
+                                    <a href="{{url('admin/category/manage_category')}}">Category Add</a>
                                 </li>
                               
                             </ul>

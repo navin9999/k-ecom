@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2021 at 08:51 PM
+-- Generation Time: Apr 02, 2021 at 10:48 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -47,6 +47,39 @@ INSERT INTO `admins` (`id`, `name`, `email`, `password`, `remember_token`, `crea
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_category_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `category_name`, `category_slug`, `parent_category_id`, `created_at`, `updated_at`) VALUES
+(1, 'Kids', 'kids', 0, '2021-03-30 00:25:34', '2021-03-30 00:25:34'),
+(2, 'Men', 'mens', 0, '2021-03-30 00:27:33', '2021-03-30 00:27:33'),
+(3, 'Women', 'womens', 0, '2021-03-30 00:29:06', '2021-03-30 00:29:06'),
+(5, 'watch', 'watch', 0, '2021-03-30 05:54:32', '2021-03-30 05:54:32'),
+(10, 'Women', 'Women', 0, '2021-04-02 14:57:49', '2021-04-02 14:57:49'),
+(11, 'navin2', 'navin2', 0, '2021-04-02 14:58:38', '2021-04-02 14:58:38'),
+(12, 'newdata', 'newdata', 0, '2021-04-02 15:01:33', '2021-04-02 15:01:33'),
+(13, 'newdata2', 'newdata', 0, '2021-04-02 15:01:52', '2021-04-02 15:01:52'),
+(15, 'newdata2', 'newdata2', 0, '2021-04-02 15:06:55', '2021-04-02 15:06:55'),
+(16, 'newdata2', 'newdata2', 0, '2021-04-02 15:07:58', '2021-04-02 15:07:58'),
+(17, 'newdata2', 'newdata24', 0, '2021-04-02 15:09:12', '2021-04-02 15:09:12'),
+(18, 'newdata2', 'newdata24', 0, '2021-04-02 15:09:20', '2021-04-02 15:09:20');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -80,7 +113,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2021_03_04_172655_create_admins_table', 1);
+(4, '2021_03_04_172655_create_admins_table', 1),
+(5, '2021_03_06_180657_create_categories_table', 2);
 
 -- --------------------------------------------------------
 
@@ -123,6 +157,12 @@ ALTER TABLE `admins`
   ADD UNIQUE KEY `admins_email_unique` (`email`);
 
 --
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -159,6 +199,12 @@ ALTER TABLE `admins`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -168,7 +214,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
